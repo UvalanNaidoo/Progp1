@@ -1,0 +1,36 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.moneymappart1">
+
+    <application
+        android:allowBackup="true"
+        android:label="MoneyMapPart1"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MoneyMapPart1">
+
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".DashboardActivity" />
+        <activity android:name=".AddExpenseActivity" />
+        <activity android:name=".SetGoalsActivity" />
+        <activity android:name=".ViewExpensesActivity" />
+        <activity android:name=".AddCategoryActivity" />
+        <activity android:name=".ViewPhotoActivity" />
+
+
+
+
+
+
+        <activity android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>

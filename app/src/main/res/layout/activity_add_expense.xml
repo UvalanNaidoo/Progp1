@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/etDate"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginBottom="16dp"
+            android:hint="Date (e.g. 2025-04-28)" />
+
+        <EditText
+            android:id="@+id/etStartTime"
+            android:hint="Start Time (e.g. 08:00)"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etEndTime"
+            android:hint="End Time (e.g. 09:30)"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etDescription"
+            android:hint="Description"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etAmount"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:layout_marginBottom="24dp"
+            android:hint="Amount (e.g. 100.50)"
+            android:inputType="numberDecimal" />
+
+
+        <Spinner
+            android:id="@+id/spinnerCategory"
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_marginBottom="24dp" />
+
+        <Button
+            android:id="@+id/btnPickImage"
+            android:text="Pick Photo (Optional)"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"/>
+
+        <ImageView
+            android:id="@+id/ivSelectedImage"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            android:layout_marginBottom="24dp"/>
+
+
+        <Button
+            android:id="@+id/btnSaveExpense"
+            android:text="Save Expense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</ScrollView>
