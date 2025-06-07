@@ -11,19 +11,20 @@
 
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".DashboardActivity" />
-        <activity android:name=".AddExpenseActivity" />
         <activity android:name=".SetGoalsActivity" />
         <activity android:name=".ViewExpensesActivity" />
         <activity android:name=".AddCategoryActivity" />
         <activity android:name=".ViewPhotoActivity" />
+        <activity android:name=".AddExpenseActivity"/>
+        <activity android:name=".CategoryGraphActivity"/>
+        <activity android:name=".DailyTrendGraphActivity"/>
 
 
 
 
 
 
-        <activity android:name=".MainActivity"
+        <activity android:name=".DashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -58,6 +58,14 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"/>
 
+    <CheckBox
+        android:id="@+id/checkboxShowRecurringOnly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Recurring Only"
+        android:layout_marginBottom="8dp"/>
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvExpenses"
         android:layout_width="match_parent"

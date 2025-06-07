@@ -33,6 +33,14 @@ class ExpenseAdapter(private val expenseList: List<ExpenseEntity>) : RecyclerVie
         } else {
             holder.binding.btnViewPhoto.visibility = View.GONE
         }
+        // Show recurring info if applicable
+        if (expense.isRecurring) {
+            holder.binding.tvRecurringInfo.text = "Recurring: ${expense.recurrencePeriod}"
+            holder.binding.tvRecurringInfo.visibility = View.VISIBLE
+        } else {
+            holder.binding.tvRecurringInfo.visibility = View.GONE
+        }
+
     }
 
     override fun getItemCount(): Int = expenseList.size

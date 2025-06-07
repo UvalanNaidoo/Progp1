@@ -33,7 +33,13 @@ class SetGoalsActivity : AppCompatActivity() {
                     Toast.makeText(this, "Please enter valid numbers", Toast.LENGTH_SHORT).show()
                 } else {
                     lifecycleScope.launch {
-                        val goal = GoalEntity(minGoal = minGoal, maxGoal = maxGoal)
+                        val goal = GoalEntity(
+                            category = "General", // or get from spinner/text input
+                            minAmount = minGoal!!,
+                            maxAmount = maxGoal!!
+                        )
+
+
                         db.goalDao().insertGoal(goal)
 
                         runOnUiThread {

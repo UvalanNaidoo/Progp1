@@ -36,6 +36,21 @@ class DashboardActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.btnCategoryGraph.setOnClickListener {
+            val intent = Intent(this, CategoryGraphActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnDailyTrends.setOnClickListener {
+            val intent = Intent(this, DailyTrendGraphActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnProgressReport.setOnClickListener {
+            val intent = Intent(this, ProgressReportActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 }

@@ -44,5 +44,26 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"/>
 
+    <Button
+        android:id="@+id/btnCategoryGraph"
+        android:text="CategoryGraph"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/btnDailyTrends"
+        android:text="DailyTrendsGraph"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
+    <Button
+        android:id="@+id/btnProgressReport"
+        android:text="ProgressReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"/>
+
 
 </LinearLayout>

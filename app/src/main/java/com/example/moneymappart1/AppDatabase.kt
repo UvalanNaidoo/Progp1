@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [UserEntity::class, ExpenseEntity::class, GoalEntity::class, CategoryEntity::class],
-    version = 1
+    version = 11
 )
 abstract class AppDatabase : RoomDatabase() {
 
@@ -26,10 +26,14 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "moneymap_database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }
         }
+
+
     }
 }

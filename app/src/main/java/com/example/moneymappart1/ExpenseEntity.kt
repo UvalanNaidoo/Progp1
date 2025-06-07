@@ -12,5 +12,8 @@ data class ExpenseEntity(
     val description: String,
     val category: String,
     val amount: Double,
-    val photoUri: String? = null
+    val paymentMethod: String,
+    val photoUri: String? = null,
+    val isRecurring: Boolean = false,
+    val recurrencePeriod: String? = null
 )

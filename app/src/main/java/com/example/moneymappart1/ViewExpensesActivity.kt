@@ -27,19 +27,25 @@ class ViewExpensesActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         db = AppDatabase.getDatabase(this)
-
         binding.rvExpenses.layoutManager = LinearLayoutManager(this)
 
         setupDatePickers()
         loadCategoriesIntoSpinner()
 
+        // 🔁 Filter on checkbox toggle
+        binding.checkboxShowRecurringOnly.setOnCheckedChangeListener { _, _ ->
+            filterExpenses()
+        }
+
+        // 🔁 Filter on button click
+        binding.btnFilterExpenses.setOnClickListener {
+            filterExpenses()
+        }
+
+        // Load all expenses initially
         lifecycleScope.launch {
             expenseList = db.expenseDao().getAllExpenses()
             displayExpenses(expenseList)
-        }
-
-        binding.btnFilterExpenses.setOnClickListener {
-            filterExpenses()
         }
     }
 
@@ -54,17 +60,27 @@ class ViewExpensesActivity : AppCompatActivity() {
 
     private fun pickDate(onDateSelected: (String) -> Unit) {
         val calendar = Calendar.getInstance()
-        val datePicker = DatePickerDialog(this, { _, year, month, dayOfMonth ->
-            val pickedDate = String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth)
-            onDateSelected(pickedDate)
-        }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH))
+        val datePicker = DatePickerDialog(
+            this,
+            { _, year, month, dayOfMonth ->
+                val pickedDate = String.format("%04d-%02d-%02d", year, month + 1, dayOfMonth)
+                onDateSelected(pickedDate)
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
         datePicker.show()
     }
 
     private fun loadCategoriesIntoSpinner() {
         lifecycleScope.launch {
             val categories = db.categoryDao().getAllCategories().map { it.name }
-            val spinnerAdapter = ArrayAdapter(this@ViewExpensesActivity, android.R.layout.simple_spinner_item, listOf("All Categories") + categories)
+            val spinnerAdapter = ArrayAdapter(
+                this@ViewExpensesActivity,
+                android.R.layout.simple_spinner_item,
+                listOf("All Categories") + categories
+            )
             spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.spinnerCategoryFilter.adapter = spinnerAdapter
         }
@@ -74,6 +90,7 @@ class ViewExpensesActivity : AppCompatActivity() {
         val startDateStr = binding.etStartDate.text.toString()
         val endDateStr = binding.etEndDate.text.toString()
         val selectedCategory = binding.spinnerCategoryFilter.selectedItem.toString()
+        val showRecurringOnly = binding.checkboxShowRecurringOnly.isChecked
 
         val filteredList = expenseList.filter { expense ->
             val matchesDate = try {
@@ -87,12 +104,14 @@ class ViewExpensesActivity : AppCompatActivity() {
             }
 
             val matchesCategory = if (selectedCategory == "All Categories") true else expense.category == selectedCategory
+            val matchesRecurring = if (showRecurringOnly) expense.isRecurring else true
 
-            matchesDate && matchesCategory
+            matchesDate && matchesCategory && matchesRecurring
         }
 
         displayExpenses(filteredList)
 
+        // Show total if filtered by category
         if (selectedCategory != "All Categories") {
             val totalAmount = filteredList.sumOf { it.amount }
             binding.tvTotalAmount.visibility = View.VISIBLE

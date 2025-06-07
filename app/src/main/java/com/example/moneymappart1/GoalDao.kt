@@ -6,9 +6,13 @@ import androidx.room.Query
 
 @Dao
 interface GoalDao {
+
     @Insert
     suspend fun insertGoal(goal: GoalEntity)
 
     @Query("SELECT * FROM goals LIMIT 1")
     suspend fun getGoal(): GoalEntity?
+
+    @Query("SELECT * FROM goals")
+    suspend fun getAllGoals(): List<GoalEntity>
 }
